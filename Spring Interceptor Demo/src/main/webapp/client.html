@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/resources/js/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function (){
+            $("#btnGet").click(function (){
+                $.ajax({
+                    url:"/restful/request",
+                    type:"get",
+                    dataType:"json",
+                    success:function (json){
+                        $("#message").text(json.message);
+                    }
+                })
+            })
+        })
+
+        $(function (){
+            $("#btnPost").click(function (){
+                $.ajax({
+                    url:"/restful/request/100",
+                    type:"post",
+                    data:"name=mike&age=1",
+                    dataType:"json",
+                    success:function (json){
+                        $("#message").text(json.message+":"+json.id);
+                    }
+                })
+            })
+        })
+
+        $(function (){
+            $("#btnPut").click(function (){
+                $.ajax({
+                    url:"/restful/request",
+                    type:"put",
+                    data:"name=mike&age=1",
+                    dataType:"json",
+                    success:function (json){
+                        $("#message").text(json.message);
+                    }
+                })
+            })
+        })
+
+        $(function (){
+            $("#btnDelete").click(function (){
+                $.ajax({
+                    url:"/restful/request",
+                    type:"delete",
+                    dataType:"json",
+                    success:function (json){
+                        $("#message").text(json.message);
+                    }
+                })
+            })
+        })
+
+        $(function (){
+            $("#btnPersons").click(function (){
+                $.ajax({
+                    url:"/restful/persons",
+                    type:"get",
+                    dataType:"json",
+                    success:function (json){
+
+                        for (var i=0;i<json.length;i++){
+                            var person = json[i];
+                            $("#divPersons").append("<h2>"+person.name+"-"+person.age+"-"+person.birthday+"</h2>")
+                        }
+
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <h1 id="message"></h1>
+    <input type="button" id="btnGet" value="get">
+    <input type="button" id="btnPost" value="post">
+    <input type="button" id="btnPut" value="put">
+    <input type="button" id="btnDelete" value="delete">
+    <hr/>
+    <input type="button" id="btnPersons" value="persons">
+    <div id="divPersons"></div>
+</body>
+</html>

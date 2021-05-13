@@ -3,8 +3,8 @@ import java.io.*;
 
 public class CopyFile {
     public static void main(String[] args) {
-        File file = new File();
-        File newFile = new File();
+        File file = new File
+        File newFile = new File
 
         InputStream input = null;
         OutputStream output = null;
